@@ -39,5 +39,12 @@
 //false and false == false
 
 function willYou(young, beautiful, loved) {
-  return (young && beautiful) != loved;
+  if ((young && beautiful) != loved) {
+    return true;
+  } else return false;
 }
+
+//cleaner answer
+// function willYou(young, beautiful, loved) {
+//   return (young && beautiful) != loved;
+// }
