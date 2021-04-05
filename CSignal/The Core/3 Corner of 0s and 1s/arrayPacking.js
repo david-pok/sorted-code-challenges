@@ -29,7 +29,7 @@
 // [output] integer
 
 function arrayPacking(a) {
-  //a exercise in closure
+  //an exercise in closure
   //we create exerciseInClosure to return another function
   //this inner function has access to everything that
   //exerciseInClosure() has access to, including
@@ -55,6 +55,27 @@ function arrayPacking(a) {
   //then we convert that number back into a base 10 number
   return parseInt(str, 2);
 }
+
+// function arrayPacking(a) {
+//   //initialize our final number
+//   let num = 0;
+
+//   //loop through our array backwards
+//   for (let i = a.length - 1; i >= 0; i--) {
+//     //left shift our number 8 places in binary
+//     // (num * ( 2 ** 8))
+//     // we are shifting 8 places to make 8 spaces
+//     num <<= 8;
+//     //we add on each element to the end of our num
+//     num += a[i];
+//     //we dont really need to convert  to binary
+//     //because the left shifting above takes care of that
+
+//     // another way to write the above 2 lines in 1 line
+//     // num = (num << 8) + a[i];
+//   }
+//   return num;
+// }
 
 //cleaner answers
 // function arrayPacking(a) {
