@@ -31,43 +31,71 @@
 // The number of strings a that can be constructed from the string b.
 
 function stringsConstruction(a, b) {
-  b = b.split("");
-  a = a.split("");
-  let stringsConstructed = 0;
-  let i = 0;
+  //turn strings into arrays
+  let aStr = a.split("");
+  let bStr = b.split("");
+  //keep counter of the possible strings
+  let count = 0;
+  //our pointer for a string
+  let aPointer = 0;
 
-  while (b.length > 0) {
-    let index = b.findIndex((x) => x === a[i]);
-    if (index === -1) break;
-    console.log(index);
-    b = b.filter((x, i) => i !== index);
-    i++;
-    if (i === a.length) {
-      i = 0;
-      stringsConstructed++;
+  while (bStr.length > 0) {
+    //use findIndex to find first instance of our match
+    //returns -1 if no match
+    let matcheeIndex = bStr.findIndex((elem) => elem == aStr[aPointer]);
+    if (matcheeIndex == -1) break;
+    //remove the matched element from the b string
+    // bStr.splice(matcheeIndex, 1);
+    //or we can just filter it instead
+    bStr = bStr.filter((elem, aPointer) => aPointer !== matcheeIndex);
+    //move on to next a string element
+    aPointer++;
+    //if we have reached the end of a string, we have 1 complete string counted
+    //so then we increment our count and start the a pointer over
+    if (aPointer == aStr.length) {
+      aPointer = 0;
+      count++;
     }
   }
-
-  return stringsConstructed;
+  return count;
 }
 
+//my other answer
 // function stringsConstruction(a, b) {
-//   b = b.split("");
-//   a = a.split("");
-//   let stringsConstructed = 0;
-//   let i = 0;
+//   let count = 0;
+//   let aArr = a.split("");
+//   let bArr = b.split("");
+//   let tempCount = 0;
+//   let j = 0;
 
-//   while (b.length > 0) {
-//     let index = b.findIndex((x) => x === a[i]);
-//     if (index === -1) break;
-//     console.log(index);
-//     b = b.filter((x, i) => i !== index);
-//     i++;
-//     if (i === a.length) {
-//       i = 0;
-//       stringsConstructed++;
+//   for (let i = 0; i < aArr.length; i++) {
+//     while (j < bArr.length) {
+//       if (aArr[i] == bArr[j]) {
+//         bArr.splice(j, 1);
+//         i++;
+//         j = 0;
+//         tempCount++;
+//       } else j++;
+
+//       if (tempCount == aArr.length) {
+//         count++;
+//         tempCount = 0;
+//         i = 0;
+//       }
+//       if (bArr.length == 0) break;
 //     }
 //   }
+//   return count;
+// }
 
-//   return stringsConstructed;
+//cleaner answer
+// function stringsConstruction(a, b) {
+//   let count = 0;
+//   while (true) {
+//     for (let x of a) {
+//       if (b.indexOf(x) < 0) return count;
+//       b = b.replace(x, "");
+//     }
+//     count++;
+//   }
 // }
