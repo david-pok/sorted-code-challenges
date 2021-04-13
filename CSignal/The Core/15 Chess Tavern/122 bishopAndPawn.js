@@ -37,42 +37,42 @@
 // true if the bishop can capture the pawn, false otherwise.
 
 function bishopAndPawn(bishop, pawn) {
-    let keys = []
-    let bish = bishop.split("")
-    let letter = bish[0].charCodeAt(0)
-    let number = bish[1]
-    while(letter > 97 && number > 1){
-        letter--
-        number--
-        keys.push("" + String.fromCharCode(letter) + number.toString())
-    }
+  //we will need to iterate in 4 directions
+  //find all the possible matches and store them in something
+  //check our pawn to where we store our matches
+  let keys = [];
+  let bish = bishop.slice();
+  let numb = parseInt(bish[1]);
+  let charc = bish[0].charCodeAt();
 
-    letter = bish[0].charCodeAt(0)
-    number = bish[1]
-    while(letter > 97 && number < 8){
-        letter--
-        number++
-        keys.push("" + String.fromCharCode(letter) + number.toString())
-    }
-    
-    letter = bish[0].charCodeAt(0)
-    number = bish[1]
-    while(letter < 104 && number > 1){
-        letter++
-        number--
-        keys.push("" + String.fromCharCode(letter) + number.toString())
-    }
-    
-    letter = bish[0].charCodeAt(0)
-    number = bish[1]
-    while(letter < 104 && number < 8){
-        letter++
-        number++
-        keys.push("" + String.fromCharCode(letter) + number.toString())
-    }
-    
-    if(keys.includes(pawn)){ 
-        return true
-    }
-    return false
+  while (charc < 104 && numb < 8) {
+    charc++;
+    numb++;
+    keys.push(String.fromCharCode(charc) + numb.toString());
+  }
+  numb = parseInt(bish[1]);
+  charc = bish[0].charCodeAt();
+  while (charc < 104 && numb > 1) {
+    charc++;
+    numb--;
+    keys.push(String.fromCharCode(charc) + numb.toString());
+  }
+  numb = parseInt(bish[1]);
+  charc = bish[0].charCodeAt();
+  while (charc > 97 && numb > 1) {
+    charc--;
+    numb--;
+    keys.push(String.fromCharCode(charc) + numb.toString());
+  }
+  numb = parseInt(bish[1]);
+  charc = bish[0].charCodeAt();
+  while (charc > 97 && numb < 8) {
+    charc--;
+    numb++;
+    keys.push(String.fromCharCode(charc) + numb.toString());
+  }
+  console.log(keys);
+  if (keys.includes(pawn)) {
+    return true;
+  } else return false;
 }
