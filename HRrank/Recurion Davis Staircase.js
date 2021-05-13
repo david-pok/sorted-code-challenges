@@ -87,3 +87,6 @@ function stepPerms(n) {
   }
   return steps(n);
 }
+
+
+console.log(stepPerms(15));
