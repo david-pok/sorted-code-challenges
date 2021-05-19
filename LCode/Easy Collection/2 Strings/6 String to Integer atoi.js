@@ -12,7 +12,6 @@
 
 // Only the space character ' ' is considered a whitespace character.
 // Do not ignore any characters other than the leading whitespace or the rest of the string after the digits.
- 
 
 // Example 1:
 
@@ -79,10 +78,33 @@
 //                      ^
 // The parsed integer is -91283472332.
 // Since -91283472332 is less than the lower bound of the range [-231, 231 - 1], the final result is clamped to -231 = -2147483648.
- 
 
 // Constraints:
 
 // 0 <= s.length <= 200
 // s consists of English letters (lower-case and upper-case), digits (0-9), ' ', '+', '-', and '.'.
 
+const myAtoi = function (s) {
+  let answer = 0;
+  let sign = 1;
+  let i = 0;
+  const max = 2147483647;
+  const min = -2147483648;
+
+  while (s[i] == " ") i++;
+
+  if (s[i] == "-" || s[i] == "+") {
+    if (s[i] == "-") sign = -1;
+    if (s[i] == "+") sign = 1;
+    i++;
+  }
+
+  while (s[i] >= "0" && s[i] <= "9") {
+    answer = answer * 10 + (s[i] - 0);
+    if (sign == 1 && answer > max) return max;
+    if (sign == -1 && answer > max + 1) return min;
+    i++;
+  }
+
+  return sign * answer;
+};
