@@ -40,10 +40,10 @@
 const removeNthFromEnd = function (head, n) {
   //2 pointer approach, one slow one fast
   //we are looking for the nth from the end
-  //so we start the fast pointer on end
+  //so we start the fast pointer on n
   //increment both at the same time until the fast reaches the end
   //this will mean the slow pointer will find the nth from the end
-  //once we find it we can just remove that node and return the list
+  //once we find it we can just remove that node, link the rest,  and return it
 
   let slow = head;
   let fast = head;
@@ -51,15 +51,12 @@ const removeNthFromEnd = function (head, n) {
   while (n--) fast = fast.next;
 
   while (fast && fast.next) {
-    fast = fast.next;
     slow = slow.next;
+    fast = fast.next;
   }
-
-  if (!fast) {
-    head = head.next;
-  } else {
-    slow.next = slow.next.next;
-  }
+  
+  if (!fast) head = head.next;
+  else slow.next = slow.next.next;
 
   return head;
 };
