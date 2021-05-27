@@ -35,3 +35,52 @@ const isPalindrome = function (head) {
 
   return true;
 };
+
+//more effecient answer
+const isPalindrome = function (head) {
+  //init a slow and a fast pointer
+  //fast pointer will move twice the speed of slow
+  //when the fast pointer reaches the end,
+  //the slow pointer has reached the middle
+  //now that we know where the middle is,
+  //we reverse the second half of the list
+  //we use a 3 pointer/variable system to juggle
+  //the 2nd half of the list to reverse it
+  //one of the variables will be a prev
+  //make sure to set prev.next to null
+  //once the 2nd half of list is reversed and the
+  //slow pointer is at the very end
+  //we check the values until we reach the middle
+  let slow = head;
+  let fast = head;
+
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  // console.log(fast, 'fast');
+  // console.log(slow, 'slow');
+  let temp;
+  let prev = slow;
+  slow = slow.next;
+  prev.next = null;
+
+  while (slow) {
+    temp = slow.next;
+    slow.next = prev;
+    prev = slow;
+    slow = temp;
+  }
+
+  fast = head;
+  slow = prev;
+  
+  while (slow) {
+    if (fast.val != slow.val) return false;
+    else {
+      fast = fast.next;
+      slow = slow.next;
+    }
+  }
+  return true;
+};
