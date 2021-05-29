@@ -65,3 +65,14 @@ const maxDepth = function (root) {
   }
   return depth;
 };
+
+//recursive dfs approach
+const maxDepth = function (root) {
+  //depth first search approach
+  if (!root) return 0;
+
+  let left = maxDepth(root.left);
+  let right = maxDepth(root.right);
+
+  return Math.max(left, right) + 1;
+};
