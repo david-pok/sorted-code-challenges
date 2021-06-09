@@ -87,3 +87,55 @@ const merge = function (nums1, m, nums2, n) {
   }
   return nums1;
 };
+
+//other answers
+var merge = function (nums1, m, nums2, n) {
+  var insertPos = m + n - 1;
+  m--;
+  n--;
+  while (n >= 0) {
+    nums1[insertPos--] = nums1[m] > nums2[n] ? nums1[m--] : nums2[n--];
+  }
+};
+
+var merge = function (nums1, m, nums2, n) {
+  let idx1 = m - 1,
+    idx2 = n - 1,
+    idx3 = m + n - 1;
+  while (idx2 >= 0) {
+    nums1[idx3--] = nums1[idx1] > nums2[idx2] ? nums1[idx1--] : nums2[idx2--];
+  }
+};
+
+var merge = function (nums1, m, nums2, n) {
+  nums1.splice(m, nums1.length - m);
+
+  var i = 0;
+  var j = 0;
+
+  while (j < nums2.length) {
+    if (nums1[i] === undefined || nums1[i] > nums2[j]) {
+      nums1.splice(i, 0, nums2[j]);
+      j++;
+      i++;
+    } else {
+      i++;
+    }
+  }
+};
+
+var merge = function (nums1, m, nums2, n) {
+  m--;
+  n--;
+  let i = nums1.length - 1;
+  while (i >= 0) {
+    if (n > -1 && m > -1 && nums1[m] >= nums2[n]) {
+      nums1[i] = nums1[m];
+      nums1[m] = nums2[n];
+      m--;
+    } else if (n > -1) {
+      nums1[i] = nums2[n--];
+    }
+    i--;
+  }
+};
