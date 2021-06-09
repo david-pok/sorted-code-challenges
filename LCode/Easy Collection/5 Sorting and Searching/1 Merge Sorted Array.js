@@ -14,8 +14,6 @@
 //  and the last n elements are set to 0 and
 //  hould be ignored. nums2 has a length of n.
 
- 
-
 // Example 1:
 
 // Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
@@ -39,7 +37,6 @@
 // The result of the merge is [1].
 // Note that because m = 0, there are no elements in nums1.
 //  The 0 is only there to ensure the merge result can fit in nums1.
- 
 
 // Constraints:
 
@@ -48,11 +45,10 @@
 // 0 <= m, n <= 200
 // 1 <= m + n <= 200
 // -109 <= nums1[i], nums2[j] <= 109
- 
 
 // Follow up: Can you come up with an algorithm that runs in O(m + n) time?
 
-// Hint #1  
+// Hint #1
 // You can easily solve this problem if you simply
 // think about two elements at a time rather than
 // two arrays. We know that each of the individual
@@ -60,9 +56,34 @@
 // will intertwine. Can we take a local decision
 // and arrive at an optimal solution?
 
-// Hint #2  
+// Hint #2
 // If you simply consider one element each at a
 // time from the two arrays and make a decision
-// and proceed accordingly, you will arrive at 
+// and proceed accordingly, you will arrive at
 // the optimal solution.
 
+const merge = function (nums1, m, nums2, n) {
+  const copy = nums1.slice();
+  let a = 0,
+    b = 0;
+
+  for (let i = 0; i < nums1.length; i++) {
+    if (copy[a] == 0 && a >= m) {
+      nums1[i] = nums2[b];
+      a++;
+      b++;
+      continue;
+    }
+
+    if (nums2[b] < copy[a]) {
+      nums1[i] = nums2[b];
+      b++;
+      continue;
+    } else {
+      nums1[i] = copy[a];
+      a++;
+      continue;
+    }
+  }
+  return nums1;
+};
