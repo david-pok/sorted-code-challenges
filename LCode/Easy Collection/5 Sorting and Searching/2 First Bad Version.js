@@ -36,3 +36,21 @@
 
 // 1 <= bad <= n <= 231 - 1
 
+var solution = function(isBadVersion) {
+    /**
+     * @param {integer} n Total versions
+     * @return {integer} The first bad version
+     */
+    return function(n) {
+        //keep track of start and end we change start or end everytime we cut in half
+        //keep track of difference of start and end, mid point will be Math.floor(difference / 2)
+        //either add that to start or subtract from end to find mid
+        //cut the versions in half and check the mid point
+        //if mid is bad then we check the lower half
+        //if mid is good then we check the upper half
+        //cut again and check mid and repeat until ... maybe the difference between end and start is 1
+        
+        //maybe if differece is 2 we just check the middle if bad
+        
+    };
+};
