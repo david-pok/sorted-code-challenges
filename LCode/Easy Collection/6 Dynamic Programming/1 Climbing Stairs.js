@@ -26,3 +26,8 @@
 // Constraints:
 
 // 1 <= n <= 45
+
+const climbStairs = function(n) {
+    //perhaps recursively hit each  amount of steps?
+    //maybe keep track of each one with an object...
+};
