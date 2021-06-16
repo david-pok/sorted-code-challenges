@@ -1,8 +1,6 @@
-// Given an integer array nums, find the contiguous 
-// subarray (containing at least one number) which 
+// Given an integer array nums, find the contiguous
+// subarray (containing at least one number) which
 // has the largest sum and return its sum.
-
- 
 
 // Example 1:
 
@@ -19,28 +17,38 @@
 
 // Input: nums = [5,4,-1,7,8]
 // Output: 23
- 
 
 // Constraints:
 
 // 1 <= nums.length <= 3 * 104
 // -105 <= nums[i] <= 105
- 
 
-// Follow up: If you have figured out the O(n) solution, 
-// try coding another solution using the divide and 
+// Follow up: If you have figured out the O(n) solution,
+// try coding another solution using the divide and
 // conquer approach, which is more subtle.
 
-
 //bad answer/brute forced
-var maxSubArray = function(nums) {
-    let max = -Infinity;
-    for (let i = 0; i < nums.length; i++) {
-        let currMax = 0;
-        for (let j = i; j < nums.length; j++) {
-            currMax += nums[j];
-            max = Math.max(currMax, max);
-        }
+const maxSubArray = function (nums) {
+  let max = -Infinity;
+  for (let i = 0; i < nums.length; i++) {
+    let currMax = 0;
+    for (let j = i; j < nums.length; j++) {
+      currMax += nums[j];
+      max = Math.max(currMax, max);
     }
-    return max;
+  }
+  return max;
+};
+
+//good answer
+const maxSubArray = function (nums) {
+  let max = nums[0];
+  let curr = Math.max(max, 0);
+
+  for (let i = 1; i < nums.length; i++) {
+    curr += nums[i];
+    max = Math.max(max, curr);
+    curr = Math.max(curr, 0);
+  }
+  return max;
 };
