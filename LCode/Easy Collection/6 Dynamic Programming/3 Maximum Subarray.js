@@ -31,3 +31,16 @@
 // try coding another solution using the divide and 
 // conquer approach, which is more subtle.
 
+
+//bad answer/brute forced
+var maxSubArray = function(nums) {
+    let max = -Infinity;
+    for (let i = 0; i < nums.length; i++) {
+        let currMax = 0;
+        for (let j = i; j < nums.length; j++) {
+            currMax += nums[j];
+            max = Math.max(currMax, max);
+        }
+    }
+    return max;
+};
