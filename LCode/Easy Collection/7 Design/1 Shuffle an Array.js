@@ -69,3 +69,33 @@ Solution.prototype.shuffle = function () {
   }
   return shuff;
 };
+
+
+//MORE EFFECIENT IN PLACE SHUFFLING ALGO
+var Solution = function(nums) {
+    this.nums = nums;
+};
+
+/**
+ * Resets the array to its original configuration and return it.
+ * @return {number[]}
+ */
+Solution.prototype.reset = function() {
+    return this.nums;
+};
+
+/**
+ * Returns a random shuffling of the array.
+ * @return {number[]}
+ */
+Solution.prototype.shuffle = function() {
+    let copy = this.nums.slice();
+    let len = copy.length;
+    
+    for (let i = 0; i < len; i++) {
+        let rand = Math.floor(Math.random() * len);
+        [copy[i], copy[rand]] = [copy[rand], copy[i]];
+    }
+    return copy;
+};
+
