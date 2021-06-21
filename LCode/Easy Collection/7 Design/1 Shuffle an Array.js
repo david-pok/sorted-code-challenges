@@ -98,4 +98,3 @@ Solution.prototype.shuffle = function() {
     }
     return copy;
 };
-
