@@ -4,7 +4,6 @@
 // answer[i] == "Fizz" if i is divisible by 3.
 // answer[i] == "Buzz" if i is divisible by 5.
 // answer[i] == i if non of the above conditions are true.
- 
 
 // Example 1:
 
@@ -17,10 +16,24 @@
 // Example 3:
 
 // Input: n = 15
-// Output: 
+// Output:
 // ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"]
- 
 
 // Constraints:
 
 // 1 <= n <= 104
+
+const fizzBuzz = function (n) {
+  let ans = [];
+
+  for (let i = 1; i <= n; i++) {
+    if (i % 5 == 0 && i % 3 == 0) {
+      ans.push("FizzBuzz");
+    } else if (i % 3 == 0) {
+      ans.push("Fizz");
+    } else if (i % 5 == 0) {
+      ans.push("Buzz");
+    } else ans.push(`${i}`);
+  }
+  return ans;
+};
