@@ -33,7 +33,7 @@ const fizzBuzz = function (n) {
       ans.push("Fizz");
     } else if (i % 5 == 0) {
       ans.push("Buzz");
-    } else ans.push(`${i}`);
+    } else ans.push('' + i);
   }
   return ans;
 };
