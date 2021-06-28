@@ -124,3 +124,21 @@
 //    }
 //    return count;
 // }
+
+
+//fill an array the length of 'n' with 0s
+//this array is for checking whether an index is a prime or not
+//we start looping at 2(i) and square it immediately(j) and add on i 
+//for every iteration, this will help us find all our non primes
+//each time we land on a number that's not a prime we increment our anser(ans)
+const countPrimes = function(n) {
+    let check = new Array(n).fill(0), ans = 0;
+    
+    for (let i = 2; i < n; i++) {
+        if (check[i] == 1) continue;
+        ans++;
+        
+        for (let j = i * i; j < n; j+=i) check[j] = 1;
+    }
+    return ans;
+};
