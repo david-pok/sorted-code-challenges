@@ -33,7 +33,51 @@ const fizzBuzz = function (n) {
       ans.push("Fizz");
     } else if (i % 5 == 0) {
       ans.push("Buzz");
-    } else ans.push('' + i);
+    } else ans.push("" + i);
   }
   return ans;
+};
+
+//cleaner answer
+const fizzBuzz = (n) =>
+  new Array(n)
+    .fill(0)
+    .map((a, i) => (++i % 3 ? "" : "Fizz") + (i % 5 ? "" : "Buzz") || "" + i);
+
+const fizzBuzz = (n) =>
+  [...Array(n)].map((_, i) =>
+    ++i % 15 == 0
+      ? "FizzBuzz"
+      : i % 5 == 0
+      ? "Buzz"
+      : i % 3 == 0
+      ? "Fizz"
+      : i + ""
+  );
+
+// using hash map: code is flexible now, we can add more conditions
+//to the hash map without adding multiple if...else conditions
+
+let fizzBuzz = (n) => {
+  let hashMap = new Map();
+  let arr = [];
+
+  hashMap.set(3, "Fizz");
+  hashMap.set(5, "Buzz");
+
+  for (let i = 1; i <= n; i++) {
+    let output = "";
+    for (let key of hashMap.keys()) {
+      if (i % key == 0) {
+        //The Map object holds key-value pairs and remembers the original insertion order of the keys.
+        //So 5 will be always checked after 3
+        output += hashMap.get(key);
+      }
+    }
+    if (output == "") {
+      output = i.toString();
+    }
+    arr.push(output);
+  }
+  return arr;
 };
