@@ -32,6 +32,7 @@
 
 // Follow up: Could you solve it without loops/recursion?
 
+//BRUTE FORCE
 const isPowerOfThree = function(n) {
     if (n == 0) return false;
     if (n > 3 && n % 3 !== 0) return false;
