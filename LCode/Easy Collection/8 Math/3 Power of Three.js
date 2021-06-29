@@ -32,3 +32,12 @@
 
 // Follow up: Could you solve it without loops/recursion?
 
+const isPowerOfThree = function(n) {
+    if (n == 0) return false;
+    if (n > 3 && n % 3 !== 0) return false;
+    
+    for (let i = 1; i < 2147483648; i *= 3) {
+        if (i == n) return true;
+        if (i > n) return false;
+    }
+};
