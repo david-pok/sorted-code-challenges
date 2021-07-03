@@ -1,6 +1,6 @@
 // given a string input , reverse the ints in chunks of k
 // where k is the int that comes after the ;
-
+// if k doesn't fit the end of the array we let it be
 // so for the input 1,2,3,4,5;2
 // k = 2
 // output = 2,1,4,3,5
@@ -36,5 +36,5 @@ const chunkReverse = (inp) => {
   return digits.join(",");
 };
 
-console.log(chunkReverse("1,2,3,4,5;2"));
-console.log(chunkReverse("1,2,3,4,5,6,7,8,9;3"));
+console.log(chunkReverse("1,2,3,4,5;2")); //output: 2,1,4,3,5
+console.log(chunkReverse("1,2,3,4,5,6,7,8,9;3")); //output: 3,2,1,6,5,4,9,8,7
