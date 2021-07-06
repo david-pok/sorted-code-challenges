@@ -103,3 +103,42 @@
 
 // Harold's magazine is missing the word some.
 
+function checkMagazine(magazine, note) {
+    // console.log(magazine);
+    // console.log(note);
+    // Write your code here
+   // give me one grand today night
+   // give one grand today
+   
+   //take note and extrapolate into a hash map
+   //each value in the hash map will be a count of each word
+   //loop through magazine and count down on each hash map item
+   // that correlates
+   //if all values are equal to 0 than print Yes
+   
+   //another solution
+   //keep a pointer on note
+   //loop through magazine
+   //if pointer matches magazine elem
+   //continue pointer and re loop
+   //if not return no
+   let vals = {};
+   
+   for (let word in note) {
+       vals[note[word]] = vals[note[word]]+1 || 1;
+   }
+   
+   for (let word in magazine) {
+       if (vals[magazine[word]] !== undefined) {
+           vals[magazine[word]] -= 1;
+       }
+   }
+   
+   for (let count in vals) {
+       if (vals[count] > 0) {
+           console.log("No");
+           return;
+       }
+   }
+   console.log("Yes");
+}
