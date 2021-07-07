@@ -26,3 +26,26 @@
 // 1 <= intervals.length <= 104
 // intervals[i].length == 2
 // 0 <= starti <= endi <= 104
+
+var merge = function(intervals) {
+    //loop through intervals
+    //keep track of current lows and high
+    //if the next iterations low is lower than current high
+    //then next iterations high is new high and they become merged
+    //if not, the current iteration stays the same, next iteration becomes low high
+    let stack = [];
+    
+    intervals.sort((a,b) => a[0] - b[0]);
+    
+    stack.push(intervals[0]);
+    
+    for (let i = 1; i < intervals.length; i++) {
+        let prev = stack.pop();
+        let curr = intervals[i];
+        
+        if (prev[1] >= curr[0]) {
+            stack.push([prev[0], Math.max(prev[1], curr[1])])
+        } else stack.push(prev, curr);
+    }
+    return stack;
+};
