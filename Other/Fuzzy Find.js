@@ -29,11 +29,12 @@ const FuzzyFind = (s, f) => {
     for (let j = 0; j < f[i].length; j++) {
       if (f[i][j] == s[sp]) {
         sp++;
+        if (sp > s.length - 1) {
+          arr.push(f[i]);
+        }
       }
     }
-    if (sp > s.length - 1) {
-      arr.push(f[i]);
-    }
+
     sp = 0;
   }
   return arr;
