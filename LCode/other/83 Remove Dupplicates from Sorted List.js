@@ -16,17 +16,33 @@
 // -100 <= Node.val <= 100
 // The list is guaranteed to be sorted in ascending order.
 
-const deleteDuplicates = function(head) {
-    //go through the list, keep track of a current node
-    //if the next node is different then we can set the currents next to it
-    let curr = head;
+const deleteDuplicates = function (head) {
+  //go through the list, keep track of a current node
+  //if the next node is different then we can set the currents next to it
+  if (!head) return head;
+  let curr = head;
 
-    while(curr !== null && curr.next !== null) {
-        if (curr.val == curr.next.val) {
-            curr.next = curr.next.next
-        } else {
-            curr = curr.next
-        }
+  while (curr !== null && curr.next !== null) {
+    if (curr.val == curr.next.val) {
+      curr.next = curr.next.next;
+    } else {
+      curr = curr.next;
     }
-    return head;
+  }
+  return head;
+};
+
+//other solutions
+var deleteDuplicates = function (head) {
+  var current = head;
+
+  while (current) {
+    if (current.next !== null && current.val == current.next.val) {
+      current.next = current.next.next;
+    } else {
+      current = current.next;
+    }
+  }
+
+  return head;
 };
