@@ -24,13 +24,29 @@
 
 // Input: root = [1,null,2]
 // Output: [1,2]
- 
 
 // Constraints:
 
 // The number of nodes in the tree is in the range [0, 100].
 // -100 <= Node.val <= 100
- 
 
 // Follow up: Recursive solution is trivial, could you do it iteratively?
 
+const inorderTraversal = function (root) {
+  const res = [];
+  if (root == null) return res;
+  const stack = [];
+  let current = root;
+
+  while (current !== null || stack.length !== 0) {
+    if (current !== null) {
+      stack.push(current);
+      current = current.left;
+    } else {
+      current = stack.pop();
+      res.push(current.val);
+      current = current.right;
+    }
+  }
+  return res;
+};
