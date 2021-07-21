@@ -46,20 +46,44 @@
 // Case #4: 729
 // Case #5: 646
 
-const BeautyCount = (input) => {
-    //check input and break down into separate strings if not already
-    //run through each individual strings
-    //check if ascii character is a letter
-    //if it is a letter keep a count on how many times each char shows up
-    //once done sort in descending with largest number getting their count
-    //multiplied by 26, 2nd by 25, 3rd by 24, etc
-    //tally up totals and return per string
+const BeautyCount = (inp) => {
+  //check input and break down into separate strings if not already
+  //run through each individual strings
+  //check if ascii character is a letter
+  //if it is a letter keep a count on how many times each char shows up
+  //once done sort in descending with largest number getting their count
+  //multiplied by 26, 2nd by 25, 3rd by 24, etc
+  //tally up totals and return per string
+  let ret = "";
+  const lowered = inp.map((x) => x.toLowerCase());
+  console.log(lowered);
+  for (let i = 0; i < lowered.length; i++) {
+    let scores = {};
+    for (let j = 0; j < lowered[i].length; j++) {
+      if (lowered[i].charCodeAt(j) > 96 && lowered[i].charCodeAt(j) < 123) {
+        scores[lowered[i][j]] = scores[lowered[i][j]] + 1 || 1;
+      }
+    }
+
+    const scoresArr = Object.values(scores).sort((a, b) => b - a);
+
+    let multiplier = 26;
+    let total = 0;
+    for (let k = 0; k < scoresArr.length; k++) {
+      total += multiplier * scoresArr[k];
+      multiplier--;
+    }
+    ret += `Case #${i + 1}: ${total}\n`;
+  }
+  return ret;
 };
 
-const inpt = [
+const input = [
   "ABbCcc",
   "Good luck in the Facebook Hacker Cup this year!",
   "Ignore punctuation, please 🙂",
   "Sometimes test cases are hard to make up.",
   "So I just go consult Professor Dalves",
 ];
+
+console.log(BeautyCount(input));
