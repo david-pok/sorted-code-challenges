@@ -56,7 +56,6 @@ const BeautyCount = (inp) => {
   //tally up totals and return per string
   let ret = "";
   const lowered = inp.map((x) => x.toLowerCase());
-  console.log(lowered);
   for (let i = 0; i < lowered.length; i++) {
     let scores = {};
     for (let j = 0; j < lowered[i].length; j++) {
@@ -64,9 +63,7 @@ const BeautyCount = (inp) => {
         scores[lowered[i][j]] = scores[lowered[i][j]] + 1 || 1;
       }
     }
-
     const scoresArr = Object.values(scores).sort((a, b) => b - a);
-
     let multiplier = 26;
     let total = 0;
     for (let k = 0; k < scoresArr.length; k++) {
